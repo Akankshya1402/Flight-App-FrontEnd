@@ -1,0 +1,39 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: auth-service
+
+  # 🔥 Disable Config Server COMPLETELY (temporary)
+  cloud:
+    config:
+      enabled: false
+
+  # (Keep this optional – it will be ignored because config is disabled)
+  config:
+    import: "optional:configserver:http://localhost:8888/"
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/flightapp_auth?createDatabaseIfNotExist=true
+    username: root
+    password: Root@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: QWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo4OTg3NjU1NA==
+  expiration: 3600000

@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  main:
+    # Ensure reactive stack (WebFlux) is used
+    web-application-type: reactive
+
+  config:
+    import: "optional:configserver:http://localhost:8888/"
+
+  cloud:
+    gateway:
+      routes:
+
+        # ---- FLIGHT SERVICE ----
+        - id: flight-service
+          uri: lb://flight-service
+          predicates:
+            - Path=/api/flight/**
+
+        # ---- BOOKING SERVICE ----
+        - id: booking-service
+          uri: lb://booking-service
+          predicates:
+            - Path=/api/booking/**
+
+        # ---- NOTIFICATION SERVICE ----
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notify/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+  instance:
+    prefer-ip-address: true
+
+# ==== JWT CONFIG (used by JwtUtil in the gateway) ====
+jwt:
+  secret: QWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo4OTg3NjU1NA==
+  expiration: 3600000   # 1 hour in milliseconds
