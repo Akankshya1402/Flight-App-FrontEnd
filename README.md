@@ -14,7 +14,8 @@ The application allows users to:
 - Book flights (authenticated users)
 - Securely interact using JWT-based authentication
 
-The frontend is implemented as a Single Page Application (SPA) using Angular routing, services, guards, interceptors, and Bootstrap for UI styling.
+The frontend is implemented as a Single Page Application (SPA) using Angular routing, services, guards,
+interceptors, and Bootstrap for UI styling.
 
 =====================================================================
 
@@ -44,67 +45,89 @@ DevOps
 
 =====================================================================
 
-OVERALL SYSTEM ARCHITECTURE (WORKFLOW DIAGRAM)
+OVERALL SYSTEM ARCHITECTURE (WORKFLOW)
 
-The complete end-to-end architecture and request flow is represented in the diagram below.
+<img
+  alt="Overall System Architecture Workflow"
+  src="data:image/png;base64,REPLACE_WITH_ARCHITECTURE_WORKFLOW_BASE64"
+/>
 
-📌 Architecture Workflow Diagram (PNG):
-docs/architecture-workflow.png
+Description:
+This diagram represents the complete end-to-end workflow of the application,
+from user interaction in the browser to backend microservices and databases.
 
 =====================================================================
 
 FRONTEND INTERNAL FLOW (ANGULAR)
 
-The internal working of the Angular frontend, including components, services,
-HttpClient, JWT interceptor, and guards, is shown in the diagram below.
+<img
+  alt="Frontend Internal Flow"
+  src="data:image/png;base64,REPLACE_WITH_FRONTEND_FLOW_BASE64"
+/>
 
-📌 Frontend Internal Flow Diagram (PNG):
-docs/frontend-internal-flow.png
+Description:
+Shows how Angular components, services, HttpClient, JWT interceptor, and guards
+work together inside the frontend.
 
 =====================================================================
 
 AUTHENTICATION FLOW (JWT)
 
-The JWT-based authentication flow from login to secured API access is shown below.
+<img
+  alt="Authentication Flow"
+  src="data:image/png;base64,REPLACE_WITH_AUTH_FLOW_BASE64"
+/>
 
-📌 Authentication Flow Diagram (PNG):
-docs/authentication-flow.png
+Description:
+Illustrates login, JWT generation, token storage, and secure API access.
 
 =====================================================================
 
 ROUTE PROTECTION FLOW (AUTH GUARD)
 
-The route protection logic using Angular Auth Guards is illustrated below.
+<img
+  alt="Route Protection Flow"
+  src="data:image/png;base64,REPLACE_WITH_ROUTE_GUARD_FLOW_BASE64"
+/>
 
-📌 Route Protection Flow Diagram (PNG):
-docs/route-protection-flow.png
-
-=====================================================================
-
-FRONTEND MODULE STRUCTURE
-
-The Angular project folder and module structure is shown in the diagram below.
-
-📌 Frontend Folder Structure Diagram (PNG):
-docs/frontend-module-structure.png
+Description:
+Explains how Angular route guards restrict access to protected routes.
 
 =====================================================================
 
-BOOTSTRAP & UI DESIGN
+FRONTEND MODULE & FOLDER STRUCTURE
 
-The UI layout, responsiveness, and Bootstrap-based component structure is represented below.
+<img
+  alt="Frontend Module Structure"
+  src="data:image/png;base64,REPLACE_WITH_FRONTEND_STRUCTURE_BASE64"
+/>
 
-📌 UI / Bootstrap Layout Diagram (PNG):
-docs/ui-bootstrap-layout.png
+Description:
+Represents the Angular folder and module organization used in this project.
 
 =====================================================================
 
-ENVIRONMENT CONFIGURATION
+BOOTSTRAP & UI DESIGN FLOW
 
-Environment configuration and API base URL handling is shown below.
+<img
+  alt="Bootstrap UI Design"
+  src="data:image/png;base64,REPLACE_WITH_UI_DESIGN_BASE64"
+/>
 
-📌 Environment Configuration Diagram (PNG):
-docs/environment-configuration.png
+Description:
+Shows how Bootstrap is used for layout, forms, navigation, and responsiveness.
+
+=====================================================================
+
+ENVIRONMENT CONFIGURATION FLOW
+
+<img
+  alt="Environment Configuration"
+  src="data:image/png;base64,REPLACE_WITH_ENV_CONFIG_BASE64"
+/>
+
+Description:
+Explains how environment.ts controls backend API URLs and configuration.
 
 =====================================================================
 
@@ -120,7 +143,7 @@ MySQL                   : 3306
 
 =====================================================================
 
-HOW TO RUN FRONTEND (COMMANDS)
+HOW TO RUN FRONTEND
 
 npm install  
 ng serve  
@@ -151,7 +174,7 @@ ng generate interceptor interceptor-name
 
 =====================================================================
 
-BACKEND – HOW TO RUN (ALL COMMANDS)
+BACKEND – HOW TO RUN
 
 PREREQUISITES
 - Java 17+
@@ -181,8 +204,8 @@ BACKEND STARTUP ORDER
 
 START EUREKA SERVER
 
-cd Flight-App-BackEnd/eureka-server
-mvn spring-boot:run
+cd Flight-App-BackEnd/eureka-server  
+mvn spring-boot:run  
 
 Verify:
 http://localhost:8761
@@ -191,46 +214,49 @@ http://localhost:8761
 
 START API GATEWAY
 
-cd Flight-App-BackEnd/api-gateway
-mvn spring-boot:run
+cd Flight-App-BackEnd/api-gateway  
+mvn spring-boot:run  
 
 ---------------------------------------------------------------------
 
 START AUTH SERVICE
 
-cd Flight-App-BackEnd/auth-service
-mvn spring-boot:run
+cd Flight-App-BackEnd/auth-service  
+mvn spring-boot:run  
 
 ---------------------------------------------------------------------
 
 START FLIGHT SERVICE
 
-cd Flight-App-BackEnd/flight-service
-mvn spring-boot:run
+cd Flight-App-BackEnd/flight-service  
+mvn spring-boot:run  
 
 ---------------------------------------------------------------------
 
 START BOOKING SERVICE
 
-cd Flight-App-BackEnd/booking-service
-mvn spring-boot:run
+cd Flight-App-BackEnd/booking-service  
+mvn spring-boot:run  
 
 ---------------------------------------------------------------------
 
 OPTIONAL: RUN USING DOCKER
 
-docker-compose up --build
-docker-compose down
-docker-compose logs -f
+docker-compose up --build  
+docker-compose down  
+docker-compose logs -f  
 
 =====================================================================
 
 HOW FRONTEND & BACKEND WORK TOGETHER
 
-The complete frontend–backend interaction flow is illustrated below.
+<img
+  alt="Frontend Backend Interaction Flow"
+  src="data:image/png;base64,REPLACE_WITH_FRONTEND_BACKEND_FLOW_BASE64"
+/>
 
-📌 Frontend–Backend Interaction Diagram (PNG):
-docs/frontend-backend-interaction.png
+Description:
+Shows the complete request-response lifecycle from Angular frontend to backend services.
 
 =====================================================================
 
