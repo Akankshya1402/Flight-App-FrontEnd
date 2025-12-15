@@ -12,7 +12,7 @@ The goal of this project is **not a demo**, but a **real-world, interview‑read
 
 ### Frontend
 
-* Angular 17+
+* Angular 17+ 
 * TypeScript
 * RxJS
 * Angular Router
