@@ -11,7 +11,7 @@ The goal of this project is **not a demo**, but a **real-world, interview‑read
 ## 2. Tech Stack (No Noise)
 
 ### Frontend
-
+ 
 * Angular 17+ 
 * TypeScript
 * RxJS
