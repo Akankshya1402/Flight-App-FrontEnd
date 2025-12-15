@@ -24,17 +24,19 @@ export class LoginComponent {
   ) {}
 
   login() {
-    this.authService.login({
-      email: this.credentials.email,
-      password: this.credentials.password
-    }).subscribe({
-      next: (res) => {
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['/flights']);
-      },
-      error: () => {
-        alert('Invalid credentials');
-      }
-    });
-  }
+  this.authService.login({
+    email: this.credentials.email,
+    password: this.credentials.password
+  }).subscribe({
+    next: (res) => {
+      localStorage.setItem('token', res.token);
+      localStorage.setItem('email', this.credentials.email); // ✅ ADD THIS
+      this.router.navigate(['/flights']);
+    },
+    error: () => {
+      alert('Invalid credentials');
+    }
+  });
+}
+
 }

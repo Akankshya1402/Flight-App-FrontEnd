@@ -1,28 +1,55 @@
 <div class="flight-container">
 
+  <!-- SEARCH CARD -->
   <div class="search-card">
     <h2>Search Flights ✈️</h2>
 
     <form class="search-form" (ngSubmit)="searchFlights()">
-      <input type="text" placeholder="From" [(ngModel)]="search.fromCity" name="fromCity" required />
-      <input type="text" placeholder="To" [(ngModel)]="search.toCity" name="toCity" required />
-      <input type="date" [(ngModel)]="search.date" name="date" required />
+      <input type="text"
+             placeholder="From"
+             [(ngModel)]="search.fromCity"
+             name="fromCity"
+             required />
+
+      <input type="text"
+             placeholder="To"
+             [(ngModel)]="search.toCity"
+             name="toCity"
+             required />
+
+      <input type="date"
+             [(ngModel)]="search.date"
+             name="date"
+             required />
 
       <div class="round-trip">
-        <input type="checkbox" [(ngModel)]="search.roundTrip" name="roundTrip" />
+        <input type="checkbox"
+               [(ngModel)]="search.roundTrip"
+               name="roundTrip" />
         <label>Round Trip</label>
       </div>
 
-      <button type="submit" class="search-btn">Search Flights</button>
+      <button type="submit" class="search-btn">
+        Search Flights
+      </button>
     </form>
   </div>
 
+  <!-- LOADING -->
   <div class="loading" *ngIf="loading">
     Loading flights...
   </div>
 
+  <!-- NO RESULTS -->
+  <div *ngIf="searched && !loading && flights.length === 0"
+       class="alert alert-info">
+    No flights found
+  </div>
+
+  <!-- FLIGHT LIST -->
   <div class="flight-list">
     <div class="flight-card" *ngFor="let flight of flights">
+
       <div>
         <div class="airline">✈️ {{ flight.airlineName }}</div>
         <div class="route">{{ flight.fromCity }} → {{ flight.toCity }}</div>
@@ -32,7 +59,13 @@
       <div>
         <div class="price">₹{{ flight.priceOneWay }}</div>
         <div class="seats">Seats: {{ flight.availableSeats }}</div>
+
+        <button class="btn btn-outline-primary mt-2"
+                (click)="bookFlight(flight)">
+          Book
+        </button>
       </div>
+
     </div>
   </div>
 

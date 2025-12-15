@@ -1,0 +1,10 @@
+<h4 class="mb-3">My Bookings</h4>
+
+<div *ngFor="let booking of bookings" class="card mb-2 p-3">
+  <strong>{{ booking.flightNumber }}</strong><br>
+  {{ booking.source }} → {{ booking.destination }}
+</div>
+
+<div *ngIf="bookings.length === 0" class="alert alert-info">
+  No bookings found
+</div>

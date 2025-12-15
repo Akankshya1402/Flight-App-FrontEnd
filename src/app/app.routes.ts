@@ -1,19 +1,50 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/auth.guard';
-
-import { LoginComponent } from './auth/login/login';
-import { RegisterComponent } from './auth/register/register';
-import { FlightSearchComponent } from './flight/flight-search/flight-search';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./core/home/home')
+        .then(m => m.HomeComponent)
+  },
+
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./auth/login/login')
+        .then(m => m.LoginComponent)
+  },
+
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./auth/register/register')
+        .then(m => m.RegisterComponent)
+  },
 
   {
     path: 'flights',
-    component: FlightSearchComponent,
-    canActivate: [authGuard]
+    loadComponent: () =>
+      import('./flight/flight-search/flight-search')
+        .then(m => m.FlightSearchComponent)
   },
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  {
+    path: 'seats',
+    loadComponent: () =>
+      import('./booking/seat-selection/seat-selection')
+        .then(m => m.SeatSelectionComponent)
+  },
+
+  {
+    path: '**',
+    redirectTo: 'home'
+  }
 ];
