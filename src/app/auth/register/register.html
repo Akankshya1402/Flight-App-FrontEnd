@@ -1,0 +1,48 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="logo">
+      ✈️ SkyFly
+    </div>
+
+    <h2>Create your account</h2>
+
+    <form (ngSubmit)="register()">
+      <div class="field">
+        <input
+          type="text"
+          placeholder="Full Name"
+          [(ngModel)]="user.fullName"
+          name="fullName"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <input
+          type="email"
+          placeholder="Email Address"
+          [(ngModel)]="user.email"
+          name="email"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="user.password"
+          name="password"
+          required
+        />
+      </div>
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <p class="login-text">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+  </div>
+</div>

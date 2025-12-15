@@ -1,0 +1,182 @@
+/* 🌤️ Full page background */
+/* 🌤️ Full page background */
+.flight-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background:
+    linear-gradient(rgba(8, 20, 40, 0.75), rgba(8, 20, 40, 0.75)),
+    url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1800&q=80");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+
+/* 🔍 Search card (glassmorphism) */
+.search-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 30px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+
+  margin-bottom: 32px;
+}
+
+.search-card h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+/* ✍️ Form */
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.search-form input[type="text"],
+.search-form input[type="date"] {
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.search-form input::placeholder {
+  color: #666;
+}
+
+/* 🔁 Round trip */
+.round-trip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+/* 🔘 Search button */
+.search-btn {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+
+  background: linear-gradient(135deg, #1e90ff, #0066ff);
+  color: #ffffff;
+
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(30, 144, 255, 0.6);
+}
+
+/* ⏳ Loading text */
+.loading {
+  color: #ffffff;
+  margin: 20px 0;
+  font-size: 1.05rem;
+}
+
+/* ✈️ Flight list */
+.flight-list {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 🧾 Flight card */
+.flight-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 22px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+
+  transition: transform 0.2s ease;
+}
+
+.flight-card:hover {
+  transform: scale(1.01);
+}
+
+/* ✈️ Flight info */
+.airline {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1e2a38;
+}
+
+.route {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 4px 0;
+}
+
+.time {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* 💰 Pricing */
+.price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0a7cff;
+  text-align: right;
+}
+
+.seats {
+  font-size: 0.85rem;
+  color: #444;
+  text-align: right;
+}
+
+/* 📱 Mobile responsive */
+@media (max-width: 600px) {
+  .flight-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .price,
+  .seats {
+    text-align: left;
+  }
+}
+/* FORCE airplane background for flight page */
+app-flight-search .flight-container {
+  background:
+    linear-gradient(rgba(8, 20, 40, 0.75), rgba(8, 20, 40, 0.75)),
+    url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1800&q=80")
+    center / cover no-repeat fixed !important;
+}

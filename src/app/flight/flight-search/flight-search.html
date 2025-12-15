@@ -1,0 +1,39 @@
+<div class="flight-container">
+
+  <div class="search-card">
+    <h2>Search Flights ✈️</h2>
+
+    <form class="search-form" (ngSubmit)="searchFlights()">
+      <input type="text" placeholder="From" [(ngModel)]="search.fromCity" name="fromCity" required />
+      <input type="text" placeholder="To" [(ngModel)]="search.toCity" name="toCity" required />
+      <input type="date" [(ngModel)]="search.date" name="date" required />
+
+      <div class="round-trip">
+        <input type="checkbox" [(ngModel)]="search.roundTrip" name="roundTrip" />
+        <label>Round Trip</label>
+      </div>
+
+      <button type="submit" class="search-btn">Search Flights</button>
+    </form>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    Loading flights...
+  </div>
+
+  <div class="flight-list">
+    <div class="flight-card" *ngFor="let flight of flights">
+      <div>
+        <div class="airline">✈️ {{ flight.airlineName }}</div>
+        <div class="route">{{ flight.fromCity }} → {{ flight.toCity }}</div>
+        <div class="time">Departure: {{ flight.departureTime }}</div>
+      </div>
+
+      <div>
+        <div class="price">₹{{ flight.priceOneWay }}</div>
+        <div class="seats">Seats: {{ flight.availableSeats }}</div>
+      </div>
+    </div>
+  </div>
+
+</div>

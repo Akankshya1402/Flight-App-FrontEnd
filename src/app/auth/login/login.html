@@ -1,0 +1,38 @@
+<div class="login-container">
+  <div class="login-card">
+
+    <div class="logo">✈️ SkyFly</div>
+    <h2>Welcome back</h2>
+
+    <form (ngSubmit)="login()">
+
+      <div class="field">
+        <input
+          type="email"
+          placeholder="Email Address"
+          [(ngModel)]="credentials.email"
+          name="email"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="credentials.password"
+          name="password"
+          required
+        />
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="register-text">
+      Don’t have an account?
+      <a routerLink="/register">Register</a>
+    </div>
+
+  </div>
+</div>
