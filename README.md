@@ -466,18 +466,5 @@ http://localhost:4200
 
 ---
 
-## Evaluation / Viva Explanation (1–2 Lines)
-
-> “The Angular frontend communicates only with the API Gateway using JWT-secured HTTP calls. Guards and interceptors enforce security, while services abstract backend communication, making the UI clean, scalable, and production-ready.”
-
----
-
-## Final Instruction (Do Not Ignore)
-
-✅ Keep the **Angular CLI default README exactly as-is**
-✅ Append this section **below it**
-❌ Do not merge or rewrite the default content
-
-This keeps both **tool compliance** and **project professionalism** intact.
 
 
