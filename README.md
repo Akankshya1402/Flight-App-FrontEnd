@@ -1,152 +1,220 @@
-✈️ Flight Booking Application – Full Stack (Frontend-Focused) Project
+✈️ Flight Booking Application – Full Stack (Frontend-Focused)
 
 =====================================================================
 
 PROJECT OVERVIEW
 
 This project is a full-stack Flight Booking Application with a strong focus on the Angular frontend.
-The frontend is built using Angular and communicates with a Spring Boot microservices backend through an API Gateway.
+The frontend is built as a Single Page Application (SPA) and communicates with a Spring Boot microservices backend through an API Gateway.
 
-The application allows users to:
-- Register and login
-- Search for flights
-- View flight details
-- Book flights (authenticated users)
-- Securely interact using JWT-based authentication
+Features
 
-The frontend is implemented as a Single Page Application (SPA) using Angular routing, services, guards,
-interceptors, and Bootstrap for UI styling.
+User registration and login
+
+Flight search and listing
+
+Flight booking (authenticated users)
+
+JWT-based secure communication
+
+Clean separation of frontend and backend responsibilities
 
 =====================================================================
 
 TECHNOLOGY STACK
-
 Frontend
-- Angular (TypeScript)
-- Angular Router
-- Angular Services
-- Angular Guards
-- Angular HTTP Interceptors
-- Bootstrap
-- HTML5, CSS3
+
+Angular (TypeScript)
+
+Angular Router
+
+Angular Services
+
+Angular Guards
+
+Angular HTTP Interceptors
+
+Bootstrap
+
+HTML5, CSS3
 
 Backend
-- Spring Boot Microservices
-- Spring Security (JWT)
-- Spring Cloud Gateway
-- Netflix Eureka
-- MySQL
-- Maven
+
+Spring Boot Microservices
+
+Spring Security (JWT)
+
+Spring Cloud Gateway
+
+Netflix Eureka
+
+MySQL
+
+Maven
 
 DevOps
-- Docker
-- Docker Compose
-- Git
+
+Docker
+
+Docker Compose
+
+Git
 
 =====================================================================
 
-OVERALL SYSTEM ARCHITECTURE (WORKFLOW)
+OVERALL SYSTEM ARCHITECTURE (WORKFLOW DIAGRAM)
 
-<img
-  alt="Overall System Architecture Workflow"
-  src="data:image/png;base64,REPLACE_WITH_ARCHITECTURE_WORKFLOW_BASE64"
-/>
+This is a REAL rendered diagram (SVG image), not ASCII or Mermaid
+
+<svg width="100%" height="460" viewBox="0 0 1200 460" xmlns="http://www.w3.org/2000/svg"> <rect x="20" y="20" width="1160" height="60" rx="8" fill="#111827"/> <text x="600" y="55" fill="white" font-size="18" text-anchor="middle">User Browser (Chrome / Edge / Firefox)</text> <rect x="20" y="100" width="1160" height="90" rx="8" fill="#2563eb"/> <text x="600" y="140" fill="white" font-size="18" text-anchor="middle"> Angular Frontend (SPA) — Port 4200 </text> <text x="600" y="165" fill="white" font-size="13" text-anchor="middle"> Components • Services • HttpClient • JWT Interceptor • Auth Guard </text> <rect x="20" y="220" width="1160" height="80" rx="8" fill="#7c3aed"/> <text x="600" y="265" fill="white" font-size="18" text-anchor="middle"> API Gateway (Spring Cloud) — Port 8080 </text> <rect x="20" y="330" width="360" height="90" rx="8" fill="#059669"/> <rect x="420" y="330" width="360" height="90" rx="8" fill="#059669"/> <rect x="820" y="330" width="360" height="90" rx="8" fill="#059669"/>
+
+<text x="200" y="370" fill="white" font-size="14" text-anchor="middle">Auth Service (8082)</text>
+<text x="200" y="390" fill="white" font-size="12" text-anchor="middle">Login • Register • JWT</text>
+
+<text x="600" y="370" fill="white" font-size="14" text-anchor="middle">Flight Service (8081)</text>
+<text x="600" y="390" fill="white" font-size="12" text-anchor="middle">Search Flights • Flight Data</text>
+
+<text x="1000" y="370" fill="white" font-size="14" text-anchor="middle">Booking Service (8083)</text>
+<text x="1000" y="390" fill="white" font-size="12" text-anchor="middle">Book Flights • Save Booking</text>
+</svg>
 
 Description:
-This diagram represents the complete end-to-end workflow of the application,
-from user interaction in the browser to backend microservices and databases.
+Shows the complete end-to-end flow from user → Angular → API Gateway → microservices → databases.
 
 =====================================================================
 
 FRONTEND INTERNAL FLOW (ANGULAR)
+<svg width="100%" height="240" viewBox="0 0 1200 240" xmlns="http://www.w3.org/2000/svg"> <rect x="40" y="60" width="220" height="60" rx="8" fill="#2563eb"/> <rect x="300" y="60" width="220" height="60" rx="8" fill="#2563eb"/> <rect x="560" y="60" width="220" height="60" rx="8" fill="#2563eb"/> <rect x="820" y="60" width="300" height="60" rx="8" fill="#2563eb"/>
 
-<img
-  alt="Frontend Internal Flow"
-  src="data:image/png;base64,REPLACE_WITH_FRONTEND_FLOW_BASE64"
-/>
+<text x="150" y="95" fill="white" text-anchor="middle">Component</text>
+<text x="410" y="95" fill="white" text-anchor="middle">Service</text>
+<text x="670" y="95" fill="white" text-anchor="middle">HttpClient</text>
+<text x="970" y="95" fill="white" text-anchor="middle">JWT Interceptor + Guard</text>
+</svg>
 
-Description:
-Shows how Angular components, services, HttpClient, JWT interceptor, and guards
-work together inside the frontend.
+Flow Explanation
+
+User interacts with Angular Component
+
+Component calls Angular Service
+
+Service uses HttpClient
+
+JWT Interceptor adds Authorization header
+
+Request sent securely to backend
 
 =====================================================================
 
 AUTHENTICATION FLOW (JWT)
 
-<img
-  alt="Authentication Flow"
-  src="data:image/png;base64,REPLACE_WITH_AUTH_FLOW_BASE64"
-/>
+User submits Login form
 
-Description:
-Illustrates login, JWT generation, token storage, and secure API access.
+POST /api/auth/login via API Gateway
+
+Auth Service validates credentials
+
+JWT token generated
+
+Token returned to frontend
+
+Token stored in localStorage
+
+JWT Interceptor automatically attaches token to requests
 
 =====================================================================
 
 ROUTE PROTECTION FLOW (AUTH GUARD)
 
-<img
-  alt="Route Protection Flow"
-  src="data:image/png;base64,REPLACE_WITH_ROUTE_GUARD_FLOW_BASE64"
-/>
+User navigates to protected route
 
-Description:
-Explains how Angular route guards restrict access to protected routes.
+Auth Guard executes
 
-=====================================================================
+Token exists & valid → Allow access
 
-FRONTEND MODULE & FOLDER STRUCTURE
-
-<img
-  alt="Frontend Module Structure"
-  src="data:image/png;base64,REPLACE_WITH_FRONTEND_STRUCTURE_BASE64"
-/>
-
-Description:
-Represents the Angular folder and module organization used in this project.
+Token missing/expired → Redirect to Login
 
 =====================================================================
 
-BOOTSTRAP & UI DESIGN FLOW
+FRONTEND MODULE STRUCTURE
+src/
+├── app/
+│   ├── auth/
+│   │   ├── login/
+│   │   ├── register/
+│   │   └── auth.service.ts
+│   ├── flight/
+│   │   ├── flight-search/
+│   │   └── flight.service.ts
+│   ├── booking/
+│   │   └── booking.service.ts
+│   ├── core/
+│   │   ├── guards/
+│   │   │   └── auth.guard.ts
+│   │   ├── interceptors/
+│   │   │   └── jwt.interceptor.ts
+│   │   └── models/
+│   ├── app-routing.module.ts
+│   ├── app.component.ts
+│   └── app.module.ts
+├── environments/
+├── main.ts
+├── styles.css
+└── index.html
 
-<img
-  alt="Bootstrap UI Design"
-  src="data:image/png;base64,REPLACE_WITH_UI_DESIGN_BASE64"
-/>
-
-Description:
-Shows how Bootstrap is used for layout, forms, navigation, and responsiveness.
 
 =====================================================================
 
-ENVIRONMENT CONFIGURATION FLOW
+BOOTSTRAP & UI DESIGN
 
-<img
-  alt="Environment Configuration"
-  src="data:image/png;base64,REPLACE_WITH_ENV_CONFIG_BASE64"
-/>
+Bootstrap is used for:
 
-Description:
-Explains how environment.ts controls backend API URLs and configuration.
+Responsive grid layout
+
+Login & registration forms
+
+Navbar
+
+Flight search cards
+
+Mobile-friendly UI
+
+Bootstrap included via:
+
+angular.json styles array or
+
+CDN in index.html
+
+=====================================================================
+
+ENVIRONMENT CONFIGURATION
+
+src/environments/environment.ts
+
+export const environment = {
+  production: false,
+  apiBaseUrl: 'http://localhost:8080'
+};
+
 
 =====================================================================
 
 PORTS USED
 
-Angular Frontend        : 4200  
-API Gateway             : 8080  
-Eureka Server           : 8761  
-Auth Service            : 8082  
-Flight Service          : 8081  
-Booking Service         : 8083  
-MySQL                   : 3306  
+Angular Frontend : 4200
+API Gateway : 8080
+Eureka Server : 8761
+Auth Service : 8082
+Flight Service : 8081
+Booking Service : 8083
+MySQL : 3306
 
 =====================================================================
 
-HOW TO RUN FRONTEND
+HOW TO RUN FRONTEND (COMMANDS)
+npm install
+ng serve
 
-npm install  
-ng serve  
 
 Application URL:
 http://localhost:4200
@@ -154,119 +222,126 @@ http://localhost:4200
 =====================================================================
 
 ANGULAR DEVELOPMENT COMMANDS
+ng serve
+ng build
+ng test
+ng e2e
 
-ng serve  
-ng build  
-ng test  
-ng e2e  
 
 Generate component:
+
 ng generate component component-name
 
+
 Generate service:
+
 ng generate service service-name
 
+
 Generate guard:
+
 ng generate guard guard-name
 
+
 Generate interceptor:
+
 ng generate interceptor interceptor-name
+
 
 =====================================================================
 
-BACKEND – HOW TO RUN
-
+BACKEND – HOW TO RUN (ALL COMMANDS)
 PREREQUISITES
-- Java 17+
-- Maven
-- MySQL
-- Docker (optional)
+
+Java 17+
+
+Maven
+
+MySQL
+
+Docker (optional)
 
 DATABASE SETUP
-
-mysql -u root -p
-
 CREATE DATABASE authdb;
 CREATE DATABASE flightdb;
 CREATE DATABASE bookingdb;
 
----------------------------------------------------------------------
+BACKEND STARTUP ORDER (IMPORTANT)
 
-BACKEND STARTUP ORDER
+Eureka Server
 
-1. Eureka Server
-2. API Gateway
-3. Auth Service
-4. Flight Service
-5. Booking Service
+API Gateway
 
----------------------------------------------------------------------
+Auth Service
+
+Flight Service
+
+Booking Service
 
 START EUREKA SERVER
+cd Flight-App-BackEnd/eureka-server
+mvn spring-boot:run
 
-cd Flight-App-BackEnd/eureka-server  
-mvn spring-boot:run  
 
-Verify:
-http://localhost:8761
-
----------------------------------------------------------------------
+Verify: http://localhost:8761
 
 START API GATEWAY
-
-cd Flight-App-BackEnd/api-gateway  
-mvn spring-boot:run  
-
----------------------------------------------------------------------
+cd Flight-App-BackEnd/api-gateway
+mvn spring-boot:run
 
 START AUTH SERVICE
-
-cd Flight-App-BackEnd/auth-service  
-mvn spring-boot:run  
-
----------------------------------------------------------------------
+cd Flight-App-BackEnd/auth-service
+mvn spring-boot:run
 
 START FLIGHT SERVICE
-
-cd Flight-App-BackEnd/flight-service  
-mvn spring-boot:run  
-
----------------------------------------------------------------------
+cd Flight-App-BackEnd/flight-service
+mvn spring-boot:run
 
 START BOOKING SERVICE
+cd Flight-App-BackEnd/booking-service
+mvn spring-boot:run
 
-cd Flight-App-BackEnd/booking-service  
-mvn spring-boot:run  
+OPTIONAL: DOCKER
+docker-compose up --build
+docker-compose down
+docker-compose logs -f
 
----------------------------------------------------------------------
-
-OPTIONAL: RUN USING DOCKER
-
-docker-compose up --build  
-docker-compose down  
-docker-compose logs -f  
 
 =====================================================================
 
 HOW FRONTEND & BACKEND WORK TOGETHER
 
-<img
-  alt="Frontend Backend Interaction Flow"
-  src="data:image/png;base64,REPLACE_WITH_FRONTEND_BACKEND_FLOW_BASE64"
-/>
+Frontend runs on port 4200
 
-Description:
-Shows the complete request-response lifecycle from Angular frontend to backend services.
+User interacts with UI
+
+Angular Services send HTTP requests
+
+JWT Interceptor attaches token
+
+API Gateway receives request
+
+Gateway routes to correct service
+
+Service accesses its database
+
+Response returned to frontend
+
+UI updates dynamically
 
 =====================================================================
 
 WHY THIS DESIGN IS CORRECT
 
-- Clean separation of concerns
-- Secure JWT-based authentication
-- Centralized routing via API Gateway
-- Database-per-service architecture
-- Scalable frontend design
-- Easy to explain in viva and interviews
+Clean separation of concerns
+
+Secure JWT-based authentication
+
+Centralized routing via API Gateway
+
+Database-per-service architecture
+
+Scalable frontend structure
+
 
 =====================================================================
