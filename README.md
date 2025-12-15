@@ -391,19 +391,7 @@ WHY THIS DESIGN IS CORRECT
 - Scalable frontend design
 - Easy to explain in viva/interviews
 
-=====================================================================
 
-VIVA / INTERVIEW EXPLANATION
-
-“This project uses an Angular frontend with guards and interceptors to securely communicate with Spring Boot microservices through an API Gateway. Eureka handles service discovery and JWT ensures secure authentication.”
-
-=====================================================================
-
-FINAL NOTE
-
-This README is documentation only.
-It does not affect build, runtime, or deployment.
-Safe for GitHub and academic submission.
 
 =====================================================================
 
