@@ -1,177 +1,185 @@
-✈️ Flight Booking Application – Full Stack (Frontend-Focused)
-📌 Project Overview
+✈️ Flight Booking Application – Frontend Focused Full Stack Project
+
+=====================================================================
+
+PROJECT OVERVIEW
 
 This project is a full-stack Flight Booking Application with a strong focus on the Angular frontend.
-The frontend is implemented as a Single Page Application (SPA) and communicates with a Spring Boot microservices backend via an API Gateway.
+The frontend is built using Angular and communicates with a Spring Boot microservices backend through an API Gateway.
 
-Functional Capabilities
+The application allows users to:
+- Register and login
+- Search for flights
+- View flight details
+- Perform authenticated actions using JWT-based security
 
-User registration and login
+The frontend is designed as a Single Page Application (SPA) using Angular routing, services, guards, interceptors, and Bootstrap for UI styling.
 
-Flight search and listing
+Flow Diagram :
+<img width="640" height="711" alt="image" src="https://github.com/user-attachments/assets/5a6b2790-c659-4220-9681-08908c202172" />
+<img width="615" height="726" alt="image" src="https://github.com/user-attachments/assets/a0cc0065-3e56-43dd-aa97-1dc62ac48a03" />
 
-Secure flight booking
 
-JWT-based authentication
 
-Route protection using Angular Guards
+=====================================================================
 
-Responsive UI using Bootstrap
+TECHNOLOGY STACK
 
-The frontend follows real-world Angular architecture using components, services, guards, interceptors, and environment-based configuration.
-
-🧰 Technology Stack
 Frontend
+- Angular (TypeScript)
+- Angular Router
+- Angular Services
+- Angular Guards
+- Angular HTTP Interceptors
+- Bootstrap (UI styling)
+- HTML5, CSS3
 
-Angular (TypeScript)
+Backend (Connected System)
+- Spring Boot Microservices
+- Spring Security (JWT)
+- Spring Cloud Gateway
+- Eureka Service Discovery
+- MySQL Database
 
-Angular Router
+=====================================================================
 
+<img width="668" height="670" alt="image" src="https://github.com/user-attachments/assets/7a008371-9458-471a-af6b-1521f0eedf99" />
+<img width="649" height="617" alt="image" src="https://github.com/user-attachments/assets/84e6add4-f295-402f-9afa-553e8a9a97c6" />
+
+
+
+FRONTEND ARCHITECTURE – HOW IT WORKS
+
+High-Level Flow (Diagrammatic)
+
+User Browser
+   |
+   |  UI Interaction (Forms, Buttons)
+   v
+Angular Components
+   |
+   |  Business Logic
+   v
 Angular Services
+   |
+   |  HTTP Requests (+ JWT via Interceptor)
+   v
+API Gateway (Backend)
+   |
+   v
+Backend Microservices + Database
 
-Angular Guards
-
-Angular HTTP Interceptors
-
-Bootstrap
-
-HTML5, CSS3
-
-Backend
-
-Spring Boot Microservices
-
-Spring Security (JWT)
-
-Spring Cloud Gateway
-
-Netflix Eureka
-
-MySQL
-
-Maven
-
-DevOps
-
-Docker
-
-Docker Compose
-
-Git
-
-🧭 Overall System Architecture (Workflow)
-
-This diagram shows the complete end-to-end flow
-from user browser → Angular frontend → API Gateway → backend microservices → databases.
-
-<p align="center"> <img src="architecture/overall-system-architecture.png" alt="Overall System Architecture Workflow" width="900"> </p>
-
-📁 Required folder structure
-
-Flight-App-FrontEnd/
-├── README.md
-└── architecture/
-    └── overall-system-architecture.png
+=====================================================================
+<img width="665" height="372" alt="image" src="https://github.com/user-attachments/assets/4f22c2e3-dacb-47fd-a131-819752c7c553" />
 
 
-Once committed, GitHub will render this image automatically.
+FRONTEND FLOW – STEP BY STEP
 
-🔁 Frontend Internal Flow (Angular)
-How a request flows inside the frontend
+1. User opens the application in browser
+2. Angular app loads (SPA)
+3. User navigates using Angular Router
+4. Forms are handled using Angular Forms
+5. API calls are made using Angular Services
+6. JWT token is attached automatically using Interceptor
+7. Guards protect secure routes
+8. Response is rendered dynamically without page reload
 
-User performs an action (click / submit)
+=====================================================================
+<img width="456" height="711" alt="image" src="https://github.com/user-attachments/assets/b6c92ef5-1e3b-4093-b735-ac56deadedd6" />
 
-Angular Component handles UI logic
+<img width="371" height="624" alt="image" src="https://github.com/user-attachments/assets/17197b95-1ebc-47ae-bb1f-48b87e213678" />
 
-Angular Service executes business logic
 
-HttpClient sends HTTP request
 
-JWT Interceptor attaches Authorization header
+=====================================================================
 
-Request is forwarded to API Gateway
+ROUTING & NAVIGATION
 
-🔐 Authentication Flow (JWT)
+Angular Router is used to navigate between pages without reloading.
 
-User submits Login form
+Example Routes:
+- /login        → Login page
+- /register     → Registration page
+- /flights      → Flight search page (Protected)
+- /booking      → Booking page (Protected)
 
-Frontend sends POST /api/auth/login
+Protected routes are secured using Auth Guard.
 
-Auth Service validates credentials
+=====================================================================
 
-JWT token is generated
+AUTHENTICATION FLOW (FRONTEND)
 
-Token is returned to frontend
+Diagrammatic Flow:
 
-Token is stored in localStorage
+Login Page
+   ↓
+AuthService.login()
+   ↓
+POST request to backend (/api/auth/login)
+   ↓
+JWT token received
+   ↓
+Token stored in browser (localStorage)
+   ↓
+JWT Interceptor attaches token to requests
+   ↓
+Secure pages accessible
 
-JWT Interceptor automatically adds token to secured requests
+=====================================================================
 
-🛡 Route Protection Flow (Auth Guard)
+JWT INTERCEPTOR – WHY & HOW
 
-User tries to access a protected route
+Purpose:
+- Automatically attach JWT token to every API request
+- Avoid manual token handling in components
 
-Auth Guard executes
+Flow:
+HTTP Request
+   ↓
+JWT Interceptor
+   ↓
+Authorization: Bearer <token>
+   ↓
+Backend API
 
-Token valid → Access allowed
+=====================================================================
 
-Token missing / expired → Redirect to Login page
+AUTH GUARD – WHY & HOW
 
-📂 Frontend Module Structure
-src/
-├── app/
-│   ├── auth/
-│   │   ├── login/
-│   │   ├── register/
-│   │   └── auth.service.ts
-│   │
-│   ├── flight/
-│   │   ├── flight-search/
-│   │   └── flight.service.ts
-│   │
-│   ├── booking/
-│   │   └── booking.service.ts
-│   │
-│   ├── core/
-│   │   ├── guards/
-│   │   │   └── auth.guard.ts
-│   │   ├── interceptors/
-│   │   │   └── jwt.interceptor.ts
-│   │   └── models/
-│   │
-│   ├── app-routing.module.ts
-│   ├── app.component.ts
-│   └── app.module.ts
-│
-├── environments/
-│   ├── environment.ts
-│   └── environment.prod.ts
-│
-├── main.ts
-├── styles.css
-└── index.html
+Purpose:
+- Prevent unauthorized access to protected routes
 
-🎨 Bootstrap & UI Design
+Flow:
+User tries to access protected page
+   ↓
+AuthGuard checks token
+   ↓
+If valid → Allow navigation
+If invalid → Redirect to login
 
-Bootstrap is used for:
+=====================================================================
 
-Responsive grid layout
+BOOTSTRAP IN FRONTEND (UI DESIGN)
 
-Login and registration forms
+Bootstrap is used to:
+- Create responsive layouts
+- Style forms, buttons, cards, and tables
+- Maintain consistent UI across pages
 
-Navigation bar
+Used Features:
+- Grid system (row, col)
+- Buttons (btn, btn-primary, btn-success)
+- Forms (form-control, form-group)
+- Cards for flight details
+- Responsive navbar
 
-Flight search results using cards
+Bootstrap is added via:
+- angular.json styles section OR
+- CDN in index.html
 
-Mobile-friendly UI
+=====================================================================
 
-Bootstrap is included via:
-
-angular.json styles array OR
-
-CDN link in index.html
-
-⚙️ Environment Configuration
+ENVIRONMENT CONFIGURATION
 
 src/environments/environment.ts
 
@@ -180,150 +188,104 @@ export const environment = {
   apiBaseUrl: 'http://localhost:8080'
 };
 
-🔌 Ports Used
-Component	Port
-Angular Frontend	4200
-API Gateway	8080
-Eureka Server	8761
-Auth Service	8082
-Flight Service	8081
-Booking Service	8083
-MySQL	3306
-▶️ How to Run Frontend
+All frontend API calls use this base URL.
+
+=====================================================================
+
+PORTS USED
+
+Angular Frontend        : 4200
+API Gateway (Backend)   : 8080
+Eureka Server           : 8761
+Auth Service            : 8082
+Flight Service          : 8081
+Booking Service         : 8083
+MySQL                   : 3306
+
+=====================================================================
+
+HOW FRONTEND TALKS TO BACKEND
+
+Angular Component
+   ↓
+Angular Service
+   ↓
+HTTPClient
+   ↓
+API Gateway
+   ↓
+Microservice
+   ↓
+Database
+
+Frontend NEVER directly calls individual microservices.
+
+=====================================================================
+
+HOW TO RUN THE FRONTEND (COMMANDS)
+
+Step 1: Install Node modules
 npm install
+
+Step 2: Start Angular server
 ng serve
 
+OR
+npm start
 
 Application URL:
-
 http://localhost:4200
 
-🛠 Angular Development Commands
+=====================================================================
+
+ANGULAR DEVELOPMENT COMMANDS
+
+Start development server:
 ng serve
+
+Build project:
 ng build
+
+Run unit tests:
 ng test
+
+Run end-to-end tests:
 ng e2e
 
-
-Generate Angular artifacts:
-
+Generate component:
 ng generate component component-name
+
+Generate service:
 ng generate service service-name
+
+Generate guard:
 ng generate guard guard-name
+
+Generate interceptor:
 ng generate interceptor interceptor-name
 
-🧩 Backend – How to Run
-Prerequisites
+=====================================================================
 
-Java 17+
+HOW THE FULL SYSTEM WORKS (FRONTEND + BACKEND)
 
-Maven
+1. Frontend runs on port 4200
+2. Backend API Gateway runs on port 8080
+3. User interacts with Angular UI
+4. Angular sends API requests to Gateway
+5. Gateway routes request to correct service
+6. Service accesses database
+7. Response flows back to frontend
+8. UI updates dynamically
 
-MySQL
+=====================================================================
 
-Docker (optional)
+WHY THIS FRONTEND DESIGN IS CORRECT
 
-Database Setup
-CREATE DATABASE authdb;
-CREATE DATABASE flightdb;
-CREATE DATABASE bookingdb;
+- Clean separation of UI and logic
+- Secure route handling
+- Centralized API communication
+- Reusable services
+- Production-style Angular architecture
+- Easy to scale and maintain
 
-Backend Startup Order (IMPORTANT)
-
-Eureka Server
-
-API Gateway
-
-Auth Service
-
-Flight Service
-
-Booking Service
-
-Start Eureka Server
-cd Flight-App-BackEnd/eureka-server
-mvn spring-boot:run
-
-
-Verify:
-
-http://localhost:8761
-
-Start API Gateway
-cd Flight-App-BackEnd/api-gateway
-mvn spring-boot:run
-
-
-Runs on:
-
-http://localhost:8080
-
-Start Auth Service
-cd Flight-App-BackEnd/auth-service
-mvn spring-boot:run
-
-
-Port: 8082
-Database: authdb
-
-Start Flight Service
-cd Flight-App-BackEnd/flight-service
-mvn spring-boot:run
-
-
-Port: 8081
-Database: flightdb
-
-Start Booking Service
-cd Flight-App-BackEnd/booking-service
-mvn spring-boot:run
-
-
-Port: 8083
-Database: bookingdb
-
-Verify Backend Services
-
-Open:
-
-http://localhost:8761
-
-
-Ensure all services are registered.
-
-🐳 Optional: Run Backend Using Docker
-docker-compose up --build
-docker-compose down
-docker-compose logs -f
-
-🔗 How Frontend & Backend Work Together
-
-Frontend runs on port 4200
-
-User interacts with UI
-
-Angular services send HTTP requests
-
-JWT interceptor attaches token
-
-API Gateway receives request
-
-Gateway routes to appropriate microservice
-
-Microservice accesses database
-
-Response is returned to frontend
-
-UI updates dynamically
-
-✅ Why This Design Is Correct
-
-Clean separation of concerns
-
-Stateless JWT-based authentication
-
-Centralized routing via API Gateway
-
-Database-per-service architecture
-
-Scalable Angular frontend
+=====================================================================
