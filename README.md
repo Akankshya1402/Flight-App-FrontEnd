@@ -1,4 +1,6 @@
-✈️ Flight Booking Application – Frontend Focused Full Stack Project
+<h1 align="center" style="font-size: 3.2em;">
+✈️ Flight Booking Application – Frontend-Focused Full-Stack Project
+</h1>
 
 =====================================================================
 
