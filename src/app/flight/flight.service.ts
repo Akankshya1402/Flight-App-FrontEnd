@@ -9,16 +9,11 @@ export class FlightService {
 
   constructor(private http: HttpClient) {}
 
-  searchFlights(payload: any): Observable<any[]> {
-    return this.http.post<any[]>(
-      `${this.BASE_URL}/search`,
-      payload,
-      {
-        params: {
-          page: '0',
-          size: '10'
-        }
-      }
-    );
-  }
+  searchFlights(payload: any) {
+  return this.http.post<any[]>(
+    'http://localhost:8081/api/flights/search',
+    payload
+  );
+}
+
 }

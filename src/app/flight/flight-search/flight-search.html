@@ -1,6 +1,5 @@
 <div class="flight-container">
 
-  <!-- SEARCH CARD -->
   <div class="search-card">
     <h2>Search Flights ✈️</h2>
 
@@ -35,18 +34,15 @@
     </form>
   </div>
 
-  <!-- LOADING -->
   <div class="loading" *ngIf="loading">
     Loading flights...
   </div>
 
-  <!-- NO RESULTS -->
-  <div *ngIf="searched && !loading && flights.length === 0"
+  <div *ngIf="searched && !loading && flights?.length === 0"
        class="alert alert-info">
     No flights found
   </div>
 
-  <!-- FLIGHT LIST -->
   <div class="flight-list">
     <div class="flight-card" *ngFor="let flight of flights">
 

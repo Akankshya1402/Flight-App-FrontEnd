@@ -11,7 +11,7 @@ import { BookingService } from '../../booking/booking-service';
   templateUrl: './flight-search.html',
   styleUrls: ['./flight-search.css']
 })
-export class FlightSearchComponent {
+export class FlightSearch {
 
   search = {
     fromCity: '',
@@ -31,45 +31,40 @@ export class FlightSearchComponent {
 
   searchFlights() {
 
-    if (!this.search.fromCity || !this.search.toCity || !this.search.date) {
-      alert('Please fill all fields');
-      return;
-    }
-
-    // 🔥 BACKEND EXPECTS DATE RANGE
-    const departureFrom = new Date(this.search.date);
-    departureFrom.setHours(0, 0, 0, 0);
-
-    const departureTo = new Date(this.search.date);
-    departureTo.setHours(23, 59, 59, 999);
-
-    const payload = {
-      fromCity: this.search.fromCity.trim(),
-      toCity: this.search.toCity.trim(),
-      departureFrom: departureFrom.toISOString(),
-      departureTo: departureTo.toISOString(),
-      roundTrip: this.search.roundTrip
-    };
-
-    console.log('FINAL PAYLOAD:', payload);
-
-    this.loading = true;
-    this.searched = true;
-    this.flights = [];
-
-    this.flightService.searchFlights(payload).subscribe({
-      next: (data: any[]) => {
-        console.log('RAW API RESPONSE:', data);
-        this.flights = data;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error(err);
-        this.loading = false;
-        alert('Failed to fetch flights');
-      }
-    });
+  if (!this.search.fromCity || !this.search.toCity || !this.search.date) {
+    alert('Please fill all fields');
+    return;
   }
+
+  const payload = {
+    fromCity: this.search.fromCity.trim(),
+    toCity: this.search.toCity.trim(),
+    journeyDate: this.search.date, // yyyy-MM-dd
+    roundTrip: this.search.roundTrip
+  };
+
+  console.log('FINAL PAYLOAD (ANGULAR):', payload);
+
+  this.loading = true;
+  this.flights = [];
+  this.searched = false;
+
+  this.flightService.searchFlights(payload).subscribe({
+    next: (data: any[]) => {
+      console.log('FLIGHTS FROM API:', data);
+      this.flights = data;
+      this.loading = false;
+      this.searched = true;
+    },
+    error: (err) => {
+      console.error(err);
+      this.loading = false;
+      this.searched = true;
+      alert('Failed to fetch flights');
+    }
+  });
+}
+
 
 bookFlight(flight: any) {
 
@@ -79,31 +74,29 @@ bookFlight(flight: any) {
     return;
   }
 
-  // TEMPORARY STATIC PASSENGER (for now)
-  const bookingPayload = {
-    customerName: 'Test User',
-    email: email,
-    numberOfSeats: 1,
-    mealRequired: false,
-    journeyDate: flight.departureTime, // ISO string OK
-    passengers: [
-      {
-        name: 'Test User',
-        gender: 'FEMALE',
-        age: 22,
-        seatNumber: 'A1'
-      }
-    ]
-  };
+const bookingPayload = {
+  customerName: 'Test User',
+  email: email,
+  numberOfSeats: 1,
+  mealRequired: false,
+  journeyDate: flight.departureTime, // ✅ ISO datetime
+  passengers: [
+    {
+      name: 'Test User',
+      gender: 'FEMALE',
+      age: 22,
+      seatNumber: 'A1'
+    }
+  ]
+};
+
 
   console.log('BOOKING PAYLOAD:', bookingPayload);
 
-  this.bookingService
-    .bookTicket(flight.id, bookingPayload)
+  this.bookingService.bookTicket(flight.id, bookingPayload)
     .subscribe({
       next: (res) => {
-        console.log('BOOKING SUCCESS:', res);
-        alert('Booking successful. PNR: ' + res.pnr);
+        alert(`Booking successful 🎉\nPNR: ${res.pnr}`);
       },
       error: (err) => {
         console.error('BOOKING ERROR:', err);
@@ -111,7 +104,6 @@ bookFlight(flight: any) {
       }
     });
 }
-
 
 
 }

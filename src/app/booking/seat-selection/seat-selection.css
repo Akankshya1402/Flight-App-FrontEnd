@@ -1,24 +1,26 @@
-.seat-container {
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
   max-width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-  border-radius: 12px;
-  background: #f5f5f5;
-  text-align: center;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
 }
 
 button {
-  width: 100%;
   padding: 10px;
-  background: #007bff;
-  color: white;
-  border: none;
   border-radius: 6px;
+  border: none;
   cursor: pointer;
+}
+
+.selected {
+  background-color: #1976d2;
+  color: white;
+}
+
+.confirm-btn {
+  margin-top: 20px;
+  padding: 12px;
+  background: green;
+  color: white;
+  border-radius: 6px;
 }

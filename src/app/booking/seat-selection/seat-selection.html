@@ -1,25 +1,17 @@
-<div class="seat-container">
-  <h2>✈️ Seat Selection</h2>
+<h2>Select Seat</h2>
 
-  <input
-    type="text"
-    placeholder="Enter Seat Number (e.g. 12A)"
-    [(ngModel)]="seatNumber"
-  />
-
-  <button (click)="confirmSeat()">Confirm Seat</button>
-
-  <hr />
-
-  <h3>📋 Current Bookings</h3>
-
-  <div *ngIf="bookings.length === 0">
-    No bookings yet
-  </div>
-
-  <ul>
-    <li *ngFor="let b of bookings">
-      Seat <strong>{{ b.seat }}</strong> — {{ b.bookedAt }}
-    </li>
-  </ul>
+<div class="seat-grid">
+  <button
+    *ngFor="let seat of seats"
+    [class.selected]="seat === selectedSeat"
+    (click)="selectSeat(seat)">
+    {{ seat }}
+  </button>
 </div>
+
+<button
+  class="confirm-btn"
+  [disabled]="!selectedSeat"
+  (click)="confirmBooking()">
+  Confirm Booking
+</button>

@@ -33,14 +33,21 @@ export const routes: Routes = [
     path: 'flights',
     loadComponent: () =>
       import('./flight/flight-search/flight-search')
-        .then(m => m.FlightSearchComponent)
+        .then(m => m.FlightSearch) // ✅ FIXED
   },
 
   {
-    path: 'seats',
+    path: 'seats/:flightId',
     loadComponent: () =>
       import('./booking/seat-selection/seat-selection')
         .then(m => m.SeatSelectionComponent)
+  },
+
+  {
+    path: 'bookings',
+    loadComponent: () =>
+      import('./booking/booking-history')
+        .then(m => m.BookingHistoryComponent)
   },
 
   {
